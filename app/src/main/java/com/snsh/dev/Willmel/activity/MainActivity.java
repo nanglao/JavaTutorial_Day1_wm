@@ -1,4 +1,4 @@
-package com.snsh.dev.Willmel;
+package com.snsh.dev.Willmel.activity;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -6,6 +6,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.snsh.dev.Willmel.R;
 import com.snsh.dev.Willmel.frag.CartFrag;
 import com.snsh.dev.Willmel.frag.HomeFrag;
 import com.snsh.dev.Willmel.frag.MenuFrag;

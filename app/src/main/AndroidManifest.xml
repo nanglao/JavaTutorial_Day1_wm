@@ -16,7 +16,7 @@
         android:windowSoftInputMode="stateHidden"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.snsh.dev.Willmel.MainActivity"
+            android:name="com.snsh.dev.Willmel.activity.MainActivity"
             android:windowSoftInputMode="stateHidden"
             android:label="@string/app_name">
             <intent-filter>
@@ -24,6 +24,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".activity.BestDealHome_SeeMore"
+            android:label="Best Deal Home See More"
+            android:parentActivityName=".activity.MainActivity">
+        </activity>
+
+        <activity
+            android:name=".activity.PeopleYouMay_SeeMore"
+            android:label="People You May See More"
+            android:windowSoftInputMode="stateHidden"
+            android:parentActivityName=".activity.MainActivity">
+        </activity>
+
     </application>
 
 </manifest>

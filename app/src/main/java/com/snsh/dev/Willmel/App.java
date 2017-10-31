@@ -3,6 +3,7 @@ package com.snsh.dev.Willmel;
 import android.app.Application;
 import android.content.Context;
 
+import com.blankj.utilcode.BuildConfig;
 import com.blankj.utilcode.util.Utils;
 import com.orhanobut.hawk.Hawk;
 

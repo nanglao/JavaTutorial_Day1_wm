@@ -15,10 +15,11 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 /**
- * Created by android_development on 14/10/2017.
+ * Created by infoava on 10/19/2017.
  */
 
-public class HotSellingHomeAdapt extends RecyclerView.Adapter<HotSellingHomeAdapt.MyViewHolder> {
+public class OutwearAndJackets extends RecyclerView.Adapter<OutwearAndJackets.MyViewHolder> {
+
 
     private List<BestDealModel> dataList;
 
@@ -43,25 +44,26 @@ public class HotSellingHomeAdapt extends RecyclerView.Adapter<HotSellingHomeAdap
         notifyDataSetChanged();
     }
 
-    public HotSellingHomeAdapt(List<BestDealModel> moviesList) {
-        this.dataList = moviesList;
+    public OutwearAndJackets(List<BestDealModel> outwearList) {
+        this.dataList = outwearList;
+
+
     }
 
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public OutwearAndJackets.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.layout_hot_sellings_home, parent, false);
-        return new MyViewHolder(itemView);
+                .inflate(R.layout.layout_best_deal_home, parent, false);
+        return new OutwearAndJackets.MyViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(OutwearAndJackets.MyViewHolder holder, int position) {
         BestDealModel data = dataList.get(position);
         holder.tv1.setText(data.getText1());
         holder.tv2.setText(data.getText2());
         Picasso.with(App.getAppContext())
                 .load(data.getImageUrl())
-                .placeholder(R.mipmap.ic_launcher)
                 .error(R.mipmap.ic_launcher)
                 .into(holder.iv1);
         /*Picasso.with(App.getAppContext())

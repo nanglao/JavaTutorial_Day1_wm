@@ -26,5 +26,11 @@ public class ServiceGenerator {
                 .client(httpClient).build();
         return retrofit.create(serviceClass);
 
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl("http://willmel.com/product/")
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .client(httpClient).build();
+//        return retrofit.create(serviceClass);
+
     }
 }

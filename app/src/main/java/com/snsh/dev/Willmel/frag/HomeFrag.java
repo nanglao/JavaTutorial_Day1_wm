@@ -1,6 +1,7 @@
 package com.snsh.dev.Willmel.frag;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,8 +13,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
+import com.snsh.dev.Willmel.activity.BestDealHome_SeeMore;
 import com.snsh.dev.Willmel.R;
+import com.snsh.dev.Willmel.activity.PeopleYouMay_SeeMore;
 import com.snsh.dev.Willmel.adapter.BestDealHomeAdapt;
 import com.snsh.dev.Willmel.adapter.HotSellingHomeAdapt;
 import com.snsh.dev.Willmel.adapter.PeopleYouMayHomeAdapt;
@@ -41,16 +46,18 @@ public class HomeFrag extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private Button bestDealSeeMore,peopleyoumaySeeMore;
+
     RequestInterface requestInterface;
     private RecyclerView rv_best_deal;
     private List<BestDealModel> dataList = new ArrayList<>();
     private BestDealHomeAdapt mAdapter;
 
-    private RecyclerView rv_best_deal1;
+    private RecyclerView rv_hot_selling;
     private List<BestDealModel> dataList1 = new ArrayList<>();
     private HotSellingHomeAdapt mAdapter1;
 
-    private RecyclerView rv_best_deal2;
+    private RecyclerView rv_people_you_may;
     private List<BestDealModel> dataList2 = new ArrayList<>();
     private PeopleYouMayHomeAdapt mAdapter2;
 
@@ -83,6 +90,7 @@ public class HomeFrag extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
@@ -95,9 +103,32 @@ public class HomeFrag extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        bestDealSeeMore = (Button)view.findViewById(R.id.BtnSeeMoreBD);
+        bestDealSeeMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "Click BestDeal See More", Toast.LENGTH_LONG).show();
+                Intent intentBDSeeMore=new Intent(getContext(), BestDealHome_SeeMore.class);
+                startActivity(intentBDSeeMore);
+                Log.e("Button Click: ", "Another Intent:" );
+            }
+        });
+
+        peopleyoumaySeeMore = (Button)view.findViewById(R.id.peopleyoumayseemore);
+        peopleyoumaySeeMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "Click People You May See More", Toast.LENGTH_LONG).show();
+                Intent intentBDSeeMore=new Intent(getContext(), PeopleYouMay_SeeMore.class);
+                startActivity(intentBDSeeMore);
+                Log.e("Button Click: ", "Another Intent People You May :" );
+            }
+        });
+
         rv_best_deal = (RecyclerView) view.findViewById(R.id.rv_best_deal);
-        rv_best_deal1 = (RecyclerView) view.findViewById(R.id.rv_best_deal1);
-        rv_best_deal2 = (RecyclerView) view.findViewById(R.id.rv_best_deal2);
+        rv_hot_selling = (RecyclerView) view.findViewById(R.id.rv_hot_selling);
+        rv_people_you_may = (RecyclerView) view.findViewById(R.id.rv_people_you_may);
 
         BannerSlider bannerSlider = (BannerSlider) view.findViewById(R.id.banner_slider1);
         List<Banner> banners = new ArrayList<>();
@@ -111,6 +142,7 @@ public class HomeFrag extends Fragment {
         bannerSlider.setBanners(banners);
 
 
+        //BestDeal layout
         mAdapter = new BestDealHomeAdapt(dataList);
 
         rv_best_deal.setHasFixedSize(true);
@@ -120,22 +152,24 @@ public class HomeFrag extends Fragment {
         rv_best_deal.setAdapter(mAdapter);
 
 
+        //HotSelling layout
         mAdapter1 = new HotSellingHomeAdapt(dataList1);
 
-        rv_best_deal1.setHasFixedSize(true);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 3, GridLayoutManager.VERTICAL, false);
-        rv_best_deal1.setLayoutManager(gridLayoutManager);
-        rv_best_deal1.setItemAnimator(new DefaultItemAnimator());
-        rv_best_deal1.setAdapter(mAdapter1);
+        rv_hot_selling.setHasFixedSize(true);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2, GridLayoutManager.HORIZONTAL, false);
+        rv_hot_selling.setLayoutManager(gridLayoutManager);
+        rv_hot_selling.setItemAnimator(new DefaultItemAnimator());
+        rv_hot_selling.setAdapter(mAdapter1);
 
 
+        //People You May Know layout
         mAdapter2 = new PeopleYouMayHomeAdapt(dataList2);
 
-        rv_best_deal2.setHasFixedSize(true);
+        rv_people_you_may.setHasFixedSize(true);
         GridLayoutManager gridLayoutManager1 = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);
-        rv_best_deal2.setLayoutManager(gridLayoutManager1);
-        rv_best_deal2.setItemAnimator(new DefaultItemAnimator());
-        rv_best_deal2.setAdapter(mAdapter2);
+        rv_people_you_may.setLayoutManager(gridLayoutManager1);
+        rv_people_you_may.setItemAnimator(new DefaultItemAnimator());
+        rv_people_you_may.setAdapter(mAdapter2);
 
         loadBestDeal();
     }

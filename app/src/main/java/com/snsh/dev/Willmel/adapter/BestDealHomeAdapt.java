@@ -21,7 +21,7 @@ import java.util.List;
 public class BestDealHomeAdapt extends RecyclerView.Adapter<BestDealHomeAdapt.MyViewHolder> {
 
     private List<BestDealModel> dataList;
-
+    //list
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView tv1, tv2;
         ImageView iv1;
@@ -43,8 +43,8 @@ public class BestDealHomeAdapt extends RecyclerView.Adapter<BestDealHomeAdapt.My
         notifyDataSetChanged();
     }
 
-    public BestDealHomeAdapt(List<BestDealModel> moviesList) {
-        this.dataList = moviesList;
+    public BestDealHomeAdapt(List<BestDealModel> bestDealHomeList) {
+        this.dataList = bestDealHomeList;
     }
 
     @Override

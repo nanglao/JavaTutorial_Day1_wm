@@ -3,7 +3,9 @@
     <color name="colorPrimary">#CA3738</color>
     <color name="colorPrimaryDark">#CA3738</color>
     <color name="colorAccent">#FFFFFF</color>
+    <color name="colorGrey">#696969</color>
 
+    <color name="colorWhite">#FFF</color>
     <color name="background1">#d7d7d7</color>
     <color name="background2">#ebebec</color>
 </resources>

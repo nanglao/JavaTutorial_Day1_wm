@@ -44,14 +44,17 @@
                     android:gravity="center"
                     android:text="BEST DEALS" />
 
-                <TextView
+                <Button
+                    android:id="@+id/BtnSeeMoreBD"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="20dp"
                     android:layout_weight="1"
                     android:gravity="right"
                     android:textSize="10dp"
+                    android:textColor="@color/colorGrey"
+                    android:textAllCaps="false"
                     android:text="See More"
-                    android:background="@color/background2"/>
+                    android:background="@android:color/transparent"/>
             </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
@@ -89,17 +92,20 @@
                     android:gravity="right"
                     android:text="HOT SELLING PRODUCTS" />
 
-                <TextView
+                <Button
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_height="20dp"
+                    android:background="@android:color/transparent"
                     android:gravity="right"
+                    android:layout_weight="1"
+                    android:textColor="@color/colorGrey"
                     android:textSize="10dp"
+                    android:textAllCaps="false"
                     android:text="See More" />
             </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_best_deal1"
+                android:id="@+id/rv_hot_selling"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/background2"
@@ -117,12 +123,7 @@
                 android:background="@color/background2"
                 android:padding="8dp">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:visibility="gone"/>
+
 
                 <TextView
                     android:layout_width="60dp"
@@ -131,17 +132,21 @@
                     android:gravity="right"
                     android:text="People You May Like" />
 
-                <TextView
+                <Button
+                    android:id="@+id/peopleyoumayseemore"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="20dp"
                     android:layout_weight="1"
                     android:gravity="right"
                     android:textSize="10dp"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorGrey"
+                    android:background="@android:color/transparent"
                     android:text="See More" />
             </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_best_deal2"
+                android:id="@+id/rv_people_you_may"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/background2"

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:layout_height="?attr/actionBarSize" >
+
+        <LinearLayout
+            android:id="@+id/a1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@color/colorPrimary"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imgBack"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginRight="5dp"
+                android:background="@color/colorPrimary"
+                android:src="@drawable/back_white" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="70dp"
+                android:layout_height="35dp"
+                android:background="@android:color/background_light" />
+
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:background="#FFFFFF"
+                android:hint="      I'm Shopping For....."
+                android:textSize="10dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:background="@android:color/background_light"
+                app:srcCompat="@android:drawable/ic_search_category_default" />
+
+            <ImageView
+                android:id="@+id/imgMessage"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:src="@drawable/msg"
+                android:layout_marginLeft="6dp"/>
+        </LinearLayout>
+
+    </android.support.v7.widget.Toolbar>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:weightSum="3"
+        android:orientation="horizontal"
+        >
+        <ImageButton
+            android:id="@+id/imgsorting"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:src="@drawable/sorting"
+            android:background="@android:color/background_light"/>
+        <ImageButton
+            android:id="@+id/imgfilter"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:src="@drawable/filter"
+            android:background="@android:color/background_light"/>
+        <ImageButton
+            android:id="@+id/imgmenu_grid"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:src="@drawable/menu_grid"
+            android:background="@android:color/background_light"/>
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_p_y_m_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background2"
+        android:nestedScrollingEnabled="false"
+        android:padding="8dp" />
+
+
+</LinearLayout>
