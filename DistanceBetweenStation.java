@@ -4,33 +4,26 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class DistanceBetweenStation {
 
 	private static String READ_FILE_YAMANOTELINE = "/Users/Shared/distanceBetweenStation/input/山手線駅間所要時間_入力.txt";
 	private static String READ_FILE_FROM_TOKYOSTATION = "/Users/Shared/distanceBetweenStation/conf/東京駅からの所要時間.txt";
 	private static String WRITE_FILE = "/Users/Shared/distanceBetweenStation/output/Time_Required_FromTokyoStation.txt";
-	private static HashMap<String,String> hmap = new HashMap<String,String>(); 
+	private static ArrayList<TrainStation>  stData= new ArrayList<TrainStation>();
+	private static ArrayList<TrainStation> differentMinuteDatalist = new ArrayList<TrainStation>();
 	private static String[] stationListName;
 	private static String[] stationListNameTime;
-	private static StringBuilder sBuilder;
-	static ArrayList<TrainStation>  stData= new ArrayList<TrainStation>();
-	private static ArrayList<TrainStation> differentMinuteDatalist = new ArrayList<TrainStation>();
-	static int totalMinute = 0;
-	static boolean checkPointFlag = false;
-	static boolean foundFirst = false;
-	static boolean foundLast = false;
-	static boolean startCount = false;
-	static int startStationIndex = -1;
-	static int endStationIndex = -1;
-	static int lastDifferentMinute = 0;
+	private static int totalMinute = 0;
+	private static int lastDifferentMinute = 0;
 
 	public static void main(String[] args){
+		//東京駅からデータのファイルを読み込み
 		fileReadDistanceFromTokyo(READ_FILE_FROM_TOKYOSTATION);
+		//各駅の距離を計算
 		defineDifferentStationTime();
-		fileReadYomanoteLine(READ_FILE_YAMANOTELINE);
+		//YomanoteLineデータのファイルを読み込み、書き込み
+		fileReadWriteYomanoteLine(READ_FILE_YAMANOTELINE);
 	}
 	
 	private static void fileReadDistanceFromTokyo(String readFileName) {
@@ -40,9 +33,7 @@ public class DistanceBetweenStation {
 				BufferedReader br=new BufferedReader(new FileReader(file));     
 				String data = null;
 	           while((data = br.readLine()) != null) {
-	        	   stationListName = data.split( "," , -1 );
-	        	   hmap.put(stationListName[0], stationListName[1]);
-	        	System.out.println(stationListName[0] + " " + stationListName[1] );
+	        	   stationListName = data.split( "," );
                    stData.add(new TrainStation(stationListName[0],stationListName[1]));
 	           }
 	           br.close();
@@ -52,45 +43,38 @@ public class DistanceBetweenStation {
 			}  
 	}
 
-	private static void fileReadYomanoteLine(String readFile) {
+	private static void fileReadWriteYomanoteLine(String readFile) {
 		try {
 			File file = new File(readFile);
 			if(file.exists()) {
-				System.out.print("ファイルは存在しています\n");
-				//FileReaderクラスのオブジェクトを生成する
 				FileWriter fw = new FileWriter(new File(WRITE_FILE));
 				FileReader filereader = new FileReader(file);
 				BufferedReader br=new BufferedReader(filereader); 
-				sBuilder=new StringBuilder();  
 				String data;
 	           while((data = br.readLine()) != null) {
+	        	   StringBuilder sBuilder=new StringBuilder();
 	        	   sBuilder.append(data);
-	        	   sBuilder.append( " " );
+	        	   sBuilder.append(" ");
 	        	   stationListNameTime = data.split(" ");
-	        		startStationIndex = returnIndex(stationListNameTime[0]);
-	        		endStationIndex = returnIndex(stationListNameTime[1]);
-//	        		System.out.println(stationListNameTime[0] + " " + stationListNameTime[1]+ " " + calculation());
-	        	   sBuilder.append(calculation()+ System.lineSeparator() );
+	        	   sBuilder.append(calculation(returnIndex(stationListNameTime[0]),returnIndex(stationListNameTime[1]))+ System.lineSeparator() );//kaigyougikyou
+	        	   fw.write(sBuilder.toString());
+	        	   System.out.print(sBuilder.toString());
 	           }
-	           fw.write(sBuilder.toString());
-	          System.out.print(sBuilder.toString());
 	           br.close();
 	           fw.close();
-	           
 			}
 		 }catch (IOException e) {
 				e.printStackTrace();
 			}  
 	}
 
-	private static int calculation() {
-		startCount = false;
-		foundFirst = false;
-		foundLast = false;
+	private static int calculation(int startStationIndex,int endStationIndex) {
+		boolean startCount = false; //
+		boolean foundFirst = false;
+		boolean foundLast = false;
 		int total = 0;
 		totalMinute = 0;
 		for (int i = 0; i < differentMinuteDatalist.size(); i++) {
-			
 			total += Integer.parseInt(differentMinuteDatalist.get(i).time);
 			if (i == startStationIndex) {
 				foundFirst = true;
@@ -114,12 +98,12 @@ public class DistanceBetweenStation {
 		int finalResult = 0;
 		int differentResult = 0;
 		differentResult = total-totalMinute;
-		if(totalMinute>differentResult)
+		if(totalMinute>differentResult) {
 			finalResult = differentResult;
-		else
+		}
+		else {
 			finalResult = totalMinute;
-// 	    System.out.println("calculation logic for given two station = " + totalMinute);
-//		System.out.println("shortest time for given two station result = " + finalResult);
+		}
 		return finalResult;
 	}
 
@@ -148,6 +132,6 @@ public class DistanceBetweenStation {
 				return i;
 			}
 		}
-		return -1;
+		return 0;
 	}
 }
